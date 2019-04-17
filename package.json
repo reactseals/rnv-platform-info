@@ -1,11 +1,12 @@
 {
   "name": "rnv-platform-info",
   "version": "1.0.0",
-  "description": "",
+  "description": "Helpers for recognizing platform based on react-native-vanilla",
   "main": "index.js",
   "author": "Aurimas Mickys",
   "license": "ISC",
   "repository": {
-  "type": "git",
-  "url": "https://github.com/reactseals/rnv-platform-info"
+    "type": "git",
+    "url": "https://github.com/reactseals/rnv-platform-info"
+  }
 }
