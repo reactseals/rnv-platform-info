@@ -1,6 +1,8 @@
-import { Platform } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
 const { userAgent } = navigator;
+const { height, width } = Dimensions.get('window');
+const aspectRatio = height / width;
 
 const IS_TIZEN = /Tizen|tizen|TIZEN/.test(userAgent);
 const IS_WEB_OS = /Web0S|web0s|WEB0S|webos|WEBOS|WebOS/.test(userAgent);
@@ -12,6 +14,7 @@ const IS_ANDROID_TV = Platform.OS === 'android' && IS_TV;
 const IS_TV_OS = Platform.OS === 'ios' && IS_TV;
 const IS_ANDROID = Platform.OS === 'android' && !IS_TV;
 const IS_IOS = Platform.OS === 'ios' && !IS_TV;
+const IS_TABLET = aspectRatio <= 1.6;
 
 export {
   IS_WEB,
@@ -23,5 +26,6 @@ export {
   IS_ANDROID,
   IS_IOS,
   IS_TIZEN,
-  IS_STV
+  IS_STV,
+  IS_TABLET
 };
