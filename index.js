@@ -14,7 +14,7 @@ const IS_ANDROID_TV = Platform.OS === 'android' && IS_TV;
 const IS_TV_OS = Platform.OS === 'ios' && IS_TV;
 const IS_ANDROID = Platform.OS === 'android' && !IS_TV;
 const IS_IOS = Platform.OS === 'ios' && !IS_TV;
-const IS_TABLET = aspectRatio <= 1.6 && aspectRatio > 0.6;
+const IS_TABLET = aspectRatio <= 1.6 && aspectRatio > 0.65;
 
 export {
   IS_WEB,
