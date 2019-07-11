@@ -1,12 +1,6 @@
 import { Dimensions, PixelRatio, Platform } from 'react-native';
 
 const { userAgent } = navigator;
-const pixelDensity = PixelRatio.get();
-
-const { height, width } = Dimensions.get('window');
-
-const adjustedWidth = width * pixelDensity;
-const adjustedHeight = height * pixelDensity;
 
 const IS_TIZEN = /Tizen|tizen|TIZEN/.test(userAgent);
 const IS_WEB_OS = /Web0S|web0s|WEB0S|webos|WEBOS|WebOS/.test(userAgent);
@@ -18,11 +12,23 @@ const IS_ANDROID_TV = Platform.OS === 'android' && IS_TV;
 const IS_TV_OS = Platform.OS === 'ios' && IS_TV;
 const IS_ANDROID = Platform.OS === 'android' && !IS_TV;
 const IS_IOS = Platform.OS === 'ios' && !IS_TV;
-const IS_TABLET = (pixelDensity < 2
-  && (adjustedWidth >= 1000
-  || adjustedHeight >= 1000)) || (pixelDensity === 2
-    && (adjustedWidth >= 1920
-    || adjustedHeight >= 1920));
+
+const isTablet = () => {
+  const pixelDensity = PixelRatio.get();
+
+  const { height, width } = Dimensions.get('window');
+
+  const adjustedWidth = width * pixelDensity;
+  const adjustedHeight = height * pixelDensity;
+
+  return (pixelDensity < 2
+    && (adjustedWidth >= 1000
+    || adjustedHeight >= 1000)) || (pixelDensity === 2
+      && (adjustedWidth >= 1920
+      || adjustedHeight >= 1920));
+}
+
+const IS_TABLET = isTablet();
 
 export {
   IS_WEB,
