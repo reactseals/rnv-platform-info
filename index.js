@@ -26,9 +26,30 @@ const isTablet = () => {
     || adjustedHeight >= 1000)) || (pixelDensity === 2
       && (adjustedWidth >= 1920
       || adjustedHeight >= 1920));
+};
+
+const getOS = () => {
+  let os = "";
+
+  if (IS_MOBILE && IS_ANDROID) os = "android";
+  else if (IS_MOBILE && IS_IOS) os = "ios";
+  else if (IS_ANDROID_TV) os = "androidtv";
+  else if (IS_TV_OS) os = "tvos";
+  else if (userAgent && userAgent.indexOf("Windows") != -1) os = "windows";
+  else if (userAgent && userAgent.indexOf("Mac") != -1) os = "macOS";
+  else if (userAgent && userAgent.indexOf("X11") != -1) os = "unix";
+  else if (userAgent && userAgent.indexOf("Linux") != -1) os = "linux";
+  else os = "unknown";
+  return os;
+};
+
+const getRuntime = () => {
+  return Platform.OS === 'web' ? 'web' : 'native';
 }
 
 const IS_TABLET = isTablet();
+const OS_NAME = getOS();
+const RUNTIME = getRuntime();
 
 export {
   IS_WEB,
@@ -41,5 +62,7 @@ export {
   IS_IOS,
   IS_TIZEN,
   IS_STV,
-  IS_TABLET
+  IS_TABLET,
+  OS_NAME,
+  RUNTIME,
 };
