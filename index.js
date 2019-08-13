@@ -31,14 +31,18 @@ const isTablet = () => {
 const getOS = () => {
   let os = "";
 
-  if (IS_MOBILE && IS_ANDROID) os = "android";
-  else if (IS_MOBILE && IS_IOS) os = "ios";
-  else if (IS_ANDROID_TV) os = "androidtv";
-  else if (IS_TV_OS) os = "tvos";
-  else if (userAgent && userAgent.indexOf("Windows") != -1) os = "windows";
-  else if (userAgent && userAgent.indexOf("Mac") != -1) os = "macOS";
-  else if (userAgent && userAgent.indexOf("X11") != -1) os = "unix";
-  else if (userAgent && userAgent.indexOf("Linux") != -1) os = "linux";
+  if ((IS_MOBILE && IS_ANDROID) || (userAgent && userAgent.match(/Android/))) os = "android";
+  else if ((IS_MOBILE && IS_IOS) || (userAgent && userAgent.match(/iPhone|iPad|iPod/))) os = "ios";
+  else if (userAgent && userAgent.match(/Windows Phone/)) os = "windowsPhone";
+  else if (userAgent && userAgent.match(/BlackBerry/)) os = "blackBerry";
+  else if (IS_ANDROID_TV || userAgent && userAgent.match(/Android TV/)) os = "androidtv";
+  else if (IS_TV_OS || userAgent && userAgent.match(/AppleTV/i)) os = "tvos";
+  else if (IS_TIZEN) os = "tizen";
+  else if (IS_WEB_OS) os = "webos";
+  else if (userAgent && userAgent.match("Windows")) os = "windows";
+  else if (userAgent && userAgent.match("Mac")) os = "macOS";
+  else if (userAgent && userAgent.match("X11")) os = "unix";
+  else if (userAgent && userAgent.match("Linux")) os = "linux";
   else os = "unknown";
   return os;
 };
@@ -47,9 +51,23 @@ const getRuntime = () => {
   return Platform.OS === 'web' ? 'web' : 'native';
 }
 
+const getFormFactor = () => {
+  const OS = getOS();
+  const isMobile = /android|ios|windowsPhone|blackBerry/.test(OS);
+  const isDesktop = /windows|macOS|unix|linux/.test(OS);
+  const isBigScreen = /androidtv|tvos|tizen|webos/.test(OS);
+
+  if (isMobile && !isTablet()) return 'phone';
+  else if (isTablet() && isMobile) return 'tablet';
+  else if (isBigScreen) return 'big_screen';
+  else if (isDesktop) return 'desktop';
+  return 'unknown';
+};
+
 const IS_TABLET = isTablet();
 const OS_NAME = getOS();
 const RUNTIME = getRuntime();
+const FORM_FACTOR = getFormFactor();
 
 export {
   IS_WEB,
@@ -65,4 +83,5 @@ export {
   IS_TABLET,
   OS_NAME,
   RUNTIME,
+  FORM_FACTOR,
 };
