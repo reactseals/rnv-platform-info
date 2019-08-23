@@ -60,7 +60,7 @@ const getFormFactor = () => {
 const IS_TIZEN = /Tizen|tizen|TIZEN/.test(userAgent);
 const IS_WEB_OS = /Web0S|web0s|WEB0S|webos|WEBOS|WebOS/.test(userAgent);
 const IS_TV = Platform.isTV || IS_TIZEN || IS_WEB_OS;
-const IS_TABLET = isTablet();
+const IS_TABLET = isTablet() && !IS_TV;
 const IS_MOBILE =
   (Platform.OS === "android" || Platform.OS === "ios") && !IS_TV && !IS_TABLET;
 const IS_STV = IS_TIZEN || IS_WEB_OS;
