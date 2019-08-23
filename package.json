@@ -1,6 +1,6 @@
 {
   "name": "rnv-platform-info",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Helpers for recognizing platform based on react-native-vanilla",
   "main": "index.js",
   "author": "Aurimas Mickys",
