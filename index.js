@@ -69,6 +69,7 @@ const IS_ANDROID_TV = Platform.OS === "android" && IS_TV;
 const IS_TV_OS = Platform.OS === "ios" && IS_TV;
 const IS_ANDROID = Platform.OS === "android" && !IS_TV;
 const IS_IOS = Platform.OS === "ios" && !IS_TV;
+const IS_MACOS = getOS() === "macos";
 
 const OS_NAME = getOS();
 const RUNTIME = getRuntime();
@@ -86,6 +87,7 @@ export {
   IS_TIZEN,
   IS_STV,
   IS_TABLET,
+  IS_MACOS,
   OS_NAME,
   RUNTIME,
   FORM_FACTOR
