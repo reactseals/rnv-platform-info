@@ -32,8 +32,8 @@ const getOS = () => {
   else if (IS_TV_OS || (userAgent && userAgent.match(/AppleTV/i))) os = "tvos";
   else if (IS_TIZEN) os = "tizen";
   else if (IS_WEB_OS) os = "webos";
-  else if (userAgent && userAgent.match("Windows")) os = "windows";
-  else if (userAgent && userAgent.match("Mac")) os = "macos";
+  else if (userAgent && userAgent.match("Windows") && userAgent.match("Electron")) os = "windows";
+  else if (userAgent && userAgent.match("Macintosh") && userAgent.match("Electron")) os = "macos";
   else if (userAgent && userAgent.match("X11")) os = "unix";
   else if (userAgent && userAgent.match("Linux")) os = "linux";
   else os = "unknown";
