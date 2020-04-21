@@ -11,7 +11,7 @@ const isTablet = () => {
 
   return (
     (pixelDensity < 2 && (adjustedWidth >= 1000 || adjustedHeight >= 1000)) ||
-    (pixelDensity === 2 && (adjustedWidth >= 1824 || adjustedHeight >= 1200))
+    (pixelDensity === 2 && (adjustedWidth >= 1920 || adjustedHeight >= 1920))
   );
 };
 
@@ -100,5 +100,5 @@ export {
   IS_MACOS,
   OS_NAME,
   RUNTIME,
-  FORM_FACTOR
+  FORM_FACTOR,
 };
