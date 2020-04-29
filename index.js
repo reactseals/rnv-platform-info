@@ -1,6 +1,9 @@
 import { Dimensions, PixelRatio, Platform } from "react-native";
 
-const { userAgent } = navigator;
+let userAgent = null;
+if (typeof navigator !== "undefined") {
+  userAgent = navigator.userAgent;
+}
 const isTablet = () => {
   const pixelDensity = PixelRatio.get();
 
